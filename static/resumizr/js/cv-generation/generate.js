@@ -129,7 +129,7 @@ $(function () {
             notif+=" and "+totalWarnings+" warnings";
 
         toastr['error'](notif+". Please fix them before subiting the resume.", "Error");
-        //return;
+        return;
 
         }
         else{
@@ -261,7 +261,7 @@ $(function () {
             notif+=" and "+totalWarnings+" warnings";
 
         toastr['error'](notif+". Please fix them before subiting the resume.", "Error");
-        //return;
+        return;
 
         }
         else{
@@ -296,7 +296,11 @@ $(function () {
         cvHtml += '</body></html>';
         css = $('input[name=pdf-options]:radio:checked').val() || 'professional';
         
-        var data = {'html': cvHtml, 'css': css}
+        loc = window.location.pathname;
+        pathname = loc.split('/');
+        resumeNum = pathname[pathname.length - 2];
+
+        var data = {'html': cvHtml, 'css': css, 'no': resumeNum}
         console.log(data);
         // save to DB
         $.ajax({
@@ -306,9 +310,12 @@ $(function () {
           contentType: "application/json"
         }).done(function(data) {
             $('#pdfOptions').modal('hide');
-            alert('PDF has been generated. Congrats!');
+            //alert('PDF has been generated. Congrats!');
+            
             console.log(data);
             $('#pdfOptions').modal('hide');
+            toastr['info']("Congrats! Your PDF has been generated.", "Info");
+        
         })
     });
 

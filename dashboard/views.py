@@ -5,10 +5,12 @@ from django.http import HttpResponse
 
 
 from django.shortcuts import render, redirect
-
+from django.core.exceptions import ObjectDoesNotExist
 import json
 
 import time
+
+from api.models import ResumizrUserData
 # list of social auth mapping
 backends = ['twitter', 'github', 'facebook',
             'google-oauth2', 'linkedin-oauth2']
@@ -38,6 +40,10 @@ def show_dashboard(request):
 
 @login_required
 def create_new_resume(request):
+    try:
+        request.user.resumizr_data.resume_data['resume']
+    except:
+        request.user.resumizr_data.resume_data['resume'] = {}
     numOfCv = len(request.user.resumizr_data.resume_data['resume']) + 1;
     now = time.strftime('%x %X')
     data = []
@@ -50,6 +56,10 @@ def create_new_resume(request):
 @login_required
 def get_all_resumes(request):
     #try :
+    try:
+        request.user.resumizr_data.resume_data['resume']
+    except:
+        request.user.resumizr_data.resume_data['resume'] = {}
     numOfCv = len(request.user.resumizr_data.resume_data['resume'])
     _json = {}
     for x in xrange(1,numOfCv + 1):
