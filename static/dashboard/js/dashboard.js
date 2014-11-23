@@ -29,7 +29,7 @@ $(function () {
                         '<td>'+totalUpdates+'</td>'+
                         '<td>'+'<a class="btn btn-warning" href = "../../generate/cvform/' + key + '" target="_blank">Edit</a>'+'</td>'+
                     '</tr>';
-                
+
             }
             fetchedCvData += '</table></div>';
             $('.show-all-cvs').append(fetchedCvData);

@@ -11,13 +11,16 @@ admin.autodiscover()
 urlpatterns = patterns('',
 
     url(r'', include('social.apps.django_app.urls', namespace='social')),
-    
+
     # API
     url(r'^usernames/(?P<username>\w+)/$','api.views.username_availability',name='username_availability'),
     url(r'^users/social-data/(?P<backend>\w+)/$','api.views.fetch_social_data',name='fetch_social_data'),
     url(r'^users/refresh-social-data/(?P<backend>\w+)/$','api.views.refresh_social_data',name='refresh_social_data'),
     url(r'^users/save-data/(?P<resumeId>\d+)/$','api.views.save_data'),
     url(r'^users/get-data/(?P<resumeId>\d+)/$','api.views.get_resume_data'),
+
+    # Theme Generator
+    url(r'^user/generator/$','theme_generator.views.theme_generator'),
 
     url(r'^user/get-all-cv/$','dashboard.views.get_all_resumes'),
     url(r'^user/dashboard/$','dashboard.views.show_dashboard'),
@@ -31,10 +34,10 @@ urlpatterns = patterns('',
     # forget password implementation
     url(r'^forgot-password/$','api.views.password_reset_middleware', name='forgot_password'),
 
-    url(r'^users/password/reset/$', 'django.contrib.auth.views.password_reset', 
+    url(r'^users/password/reset/$', 'django.contrib.auth.views.password_reset',
         {'post_reset_redirect' : '/users/password/reset/done/'}),
     url(r'^users/password/reset/done/$', 'django.contrib.auth.views.password_reset_done'),
-    url(r'^users/password/reset/(?P<uidb64>[0-9A-Za-z]+)-(?P<token>.+)/$', 'django.contrib.auth.views.password_reset_confirm', 
+    url(r'^users/password/reset/(?P<uidb64>[0-9A-Za-z]+)-(?P<token>.+)/$', 'django.contrib.auth.views.password_reset_confirm',
         {'post_reset_redirect' : '/users/password/done/'}),
     url(r'^users/password/done/$', 'django.contrib.auth.views.password_reset_complete'),
 
@@ -45,7 +48,7 @@ urlpatterns = patterns('',
     url(r'^email-sent/', 'api.views.validation_sent'),
 
     url(r'^resumizr-login/(?P<backend>[^/]+)/$', 'api.views.username_login', name='username_login'),
-    
+
     url(r'^login/$','api.views.login', name='login'),
     url(r'^logout/$','api.views.logout', name='logout'),
     url(r'^app/$','api.views.app',name='app'),

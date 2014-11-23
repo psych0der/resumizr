@@ -31,8 +31,8 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django_mongodb_engine', 
-        'NAME': 'resumizr',                      
+        'ENGINE': 'django_mongodb_engine',
+        'NAME': 'resumizr',
         # The following settings are not used with sqlite3:
         'USER': '',
         'PASSWORD': '',
@@ -152,9 +152,10 @@ INSTALLED_APPS = (
     'django_mongodb_engine',
     'api',
     'pdfconvertor',
+    'theme_generator',
     'django.contrib.admin',
     'social.apps.django_app.default',
-   
+
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
@@ -227,7 +228,7 @@ SOCIAL_AUTH_PIPELINE = (
     'social.pipeline.social_auth.associate_user',
     'social.pipeline.social_auth.load_extra_data',
     'social.pipeline.user.user_details'
-    
+
 )
 
 
@@ -344,12 +345,12 @@ if not DEBUG:
 
     DATABASES = {
     'default': {
-        'ENGINE': 'django_mongodb_engine', 
-        'NAME': 'resumizr',                      
+        'ENGINE': 'django_mongodb_engine',
+        'NAME': 'resumizr',
         # The following settings are not used with sqlite3:
         'USER': 'resumizr',
         'PASSWORD': 'bholavarun',
-        'HOST': 'mongodb://troup.mongohq.com/resumizr', 
+        'HOST': 'mongodb://troup.mongohq.com/resumizr',
         'PORT': '10071',                      # Set to empty string for default.
     }
     }
