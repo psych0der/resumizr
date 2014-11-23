@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Resumizr | Dashboard </title>
+    {% load staticfiles %}
+
+    <link rel="stylesheet" href="{% static 'resumizr/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'dashboard/css/main.css' %}">
+    <link href="{% static  'resumizr/css/font-awesome.min.css' %}" rel="stylesheet">
+
+    <script src="{% static 'resumizr/js/jquery.min.js' %}"></script>
+    <script src="{% static 'theme_generator/js/theme-generator.js' %}"></script>
+
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-default" role="navigation">
+   <div class="navbar-header">
+      <a class="navbar-brand" href="#" style="color:#fff;font-weight:bold;font-size:20px;margin-left:20%;">Resumizr</a>
+   </div>
+   <div class="pull-right" style="margin-right:2%;">
+      <p class="navbar-text" style="color:#fff;font-weight:bold;font-size:16px;">Signed in as <span style="color:#5ac9fc;font-style:italic;">{{user}}</span></p>
+      <a href="../../logout" class="flat-button fill-red" style="margin-top:8px;">Logout</a>
+   </div>
+</nav>
+</header>
+<div class="container">
+    <label><h3>Generate your custom themes</h3></label>
+    <a class="btn btn-primary btn-lg create--new--theme" style="margin-left:40%;">Generate new theme</a>
+</div>
+</body>
+</html>
